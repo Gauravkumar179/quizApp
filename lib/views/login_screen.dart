@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen>
           .listen((event) async {
             if (event is GoogleSignInAuthenticationEventSignIn) {
               final account = event.user;
-              if (account != null) await _signInToFirebase(account);
+              await _signInToFirebase(account);
             } else if (event is GoogleSignInAuthenticationEventSignOut) {
               setState(() => _user = null);
             }
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen>
   Future<void> _signInToFirebase(GoogleSignInAccount account) async {
     setState(() => _isLoading = true);
     try {
-      final googleAuth = await account.authentication;
+      final googleAuth = account.authentication;
       final credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
       );

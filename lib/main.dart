@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quizapp/views/splash_screen.dart';
 import 'core/firebase_initializer.dart';
 import 'core/app_routes.dart';
