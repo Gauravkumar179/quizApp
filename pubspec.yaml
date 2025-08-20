@@ -42,6 +42,7 @@ dependencies:
   firebase_ai:
   timeago: 
   intl:
+  get_storage: 
 
 dev_dependencies:
   flutter_test:

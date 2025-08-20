@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'leaderboard.dart';
 import 'package:quizapp/views/quiz_history_page.dart';
 import 'package:quizapp/views/stats_page.dart';
 import '../viewmodels/quiz_viewmodel.dart';
@@ -42,6 +43,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   final List<Widget> _pages = [
     const HomePage(),
+    const LeaderboardPage(),
     QuizHistoryPage(),
     StatsPage(),
     const ProfilePage(),
@@ -87,7 +89,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.history_outlined),
+              icon: Icon(Icons.leaderboard_outlined),
+              activeIcon: Icon(Icons.leaderboard),
+              label: 'Leaderboard',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.history_edu_outlined),
               activeIcon: Icon(Icons.history),
               label: 'History',
             ),

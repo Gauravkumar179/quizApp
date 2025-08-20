@@ -1,13 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../viewmodels/quiz_viewmodel.dart';
+import '../views/theme_service.dart'; // Import the new theme service
 
+// The ProfilePage can now be a StatelessWidget again
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get the instances of the view models and services.
     final quizVM = Get.find<QuizViewModel>();
+    final themeService = Get.find<ThemeService>();
+    final _firestore = FirebaseFirestore.instance;
+    final _auth = FirebaseAuth.instance;
+    final profilePhoto = _auth.currentUser?.photoURL;
 
     return Scaffold(
       body: Container(
@@ -27,46 +36,65 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(20),
+                      // This container now holds the user's profile photo or a fallback icon.
+                      width: 80,
+                      height: 80,
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      child: const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 40,
-                      ),
+                      child: profilePhoto != null
+                          ? ClipOval(
+                              // Use ClipOval to make the image circular
+                              child: Image.network(
+                                profilePhoto,
+                                fit: BoxFit
+                                    .cover, // Ensure the image fills the circle
+                                width: 80,
+                                height: 80,
+                                // You can add a loading builder or error builder here for better UX.
+                              ),
+                            )
+                          : const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 40,
+                            ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      'Quiz Master',
-                      style: TextStyle(
-                        color: Colors.white,
+                    Text(
+                      _auth.currentUser?.displayName ?? 'Guest User',
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                    const Text(
-                      'Learning enthusiast',
-                      style: TextStyle(color: Colors.white70, fontSize: 16),
+                    Text(
+                      _auth.currentUser?.email ?? 'No email available',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white.withOpacity(0.8),
+                      ),
                     ),
                   ],
                 ),
               ),
-
-              // Content
+              // Main content area with preferences
               Expanded(
                 child: Container(
-                  margin: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 16,
+                  ),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xFFF7FAFC),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                     ),
                   ),
-                  child: _buildProfileContent(quizVM),
+                  child: _buildProfileContent(quizVM, themeService),
                 ),
               ),
             ],
@@ -76,9 +104,9 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileContent(QuizViewModel quizVM) {
+  Widget _buildProfileContent(QuizViewModel quizVM, ThemeService themeService) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.zero,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -224,25 +252,28 @@ class ProfilePage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
+          // Use the ThemeService to manage the Dark Mode switch.
+          Obx(
+            () => _buildPreferenceItem(
+              Icons.dark_mode,
+              'Dark Mode',
+              'Switch to dark theme',
+              themeService.isDarkMode.value,
+              (value) => themeService.toggleTheme(),
+            ),
+          ),
           _buildPreferenceItem(
             Icons.notifications,
             'Notifications',
             'Get reminders to take quizzes',
-            true,
-            (value) {},
-          ),
-          _buildPreferenceItem(
-            Icons.dark_mode,
-            'Dark Mode',
-            'Switch to dark theme',
-            false,
+            true, // Replace with your state variable
             (value) {},
           ),
           _buildPreferenceItem(
             Icons.volume_up,
             'Sound Effects',
             'Play sounds for correct/incorrect answers',
-            true,
+            true, // Replace with your state variable
             (value) {},
           ),
 
@@ -312,6 +343,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  // A helper method to build the preference item widget.
   Widget _buildPreferenceItem(
     IconData icon,
     String title,
@@ -374,6 +406,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  // A helper method for the "About" section items.
   Widget _buildAboutItem(
     IconData icon,
     String title,
@@ -442,6 +475,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
+  // A helper method to show the reset confirmation dialog.
   void _showResetDialog(QuizViewModel quizVM) {
     Get.dialog(
       AlertDialog(

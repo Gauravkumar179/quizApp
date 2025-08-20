@@ -49,27 +49,20 @@ class QuizViewModel extends GetxController {
   List<String> get subjects {
     if (selectedClass.value.isEmpty) return [];
 
-    // Return subjects based on selected class
     if (selectedClass.value.contains('Class 6') ||
         selectedClass.value.contains('Class 7') ||
         selectedClass.value.contains('Class 8')) {
-      return [
-        'Mathematics',
-        'Science',
-        'English',
-        'Social Studies',
-        'Hindi',
-        'Environmental Studies',
-      ];
+      return ['Mathematics', 'Science', 'English', 'Social Studies'];
     } else if (selectedClass.value.contains('Class 9') ||
         selectedClass.value.contains('Class 10')) {
       return [
         'Mathematics',
         'Science',
+        'Physics',
+        'Chemistry',
+        'Biology',
         'English',
         'Social Studies',
-        'Hindi',
-        'Computer Applications',
       ];
     } else if (selectedClass.value.contains('Class 11') ||
         selectedClass.value.contains('Class 12')) {
@@ -79,7 +72,6 @@ class QuizViewModel extends GetxController {
         'Mathematics',
         'Biology',
         'Computer Science',
-        'English',
         'Economics',
         'History',
       ];
@@ -91,7 +83,6 @@ class QuizViewModel extends GetxController {
         'Biology',
         'Mathematics',
         'Engineering',
-        'Business Studies',
       ];
     }
   }
@@ -99,7 +90,6 @@ class QuizViewModel extends GetxController {
   List<String> get topics {
     if (selectedSubject.value.isEmpty) return [];
 
-    // Return topics based on selected subject
     switch (selectedSubject.value) {
       case 'Mathematics':
         if (selectedClass.value.contains('Class 6') ||
@@ -107,8 +97,7 @@ class QuizViewModel extends GetxController {
             selectedClass.value.contains('Class 8')) {
           return [
             'Numbers',
-            'Fractions',
-            'Decimals',
+            'Algebraic Expressions',
             'Geometry',
             'Mensuration',
             'Data Handling',
@@ -117,33 +106,35 @@ class QuizViewModel extends GetxController {
             selectedClass.value.contains('Class 10')) {
           return [
             'Number Systems',
-            'Algebra',
-            'Coordinate Geometry',
-            'Geometry',
+            'Polynomials',
+            'Linear Equations',
+            'Triangles',
             'Trigonometry',
-            'Statistics',
           ];
         } else {
           return [
-            'Algebra',
             'Calculus',
-            'Coordinate Geometry',
-            'Trigonometry',
-            'Statistics',
+            'Algebra',
+            'Differential Equations',
             'Probability',
+            'Statistics',
           ];
         }
 
       case 'Science':
-        return ['Physics', 'Chemistry', 'Biology', 'Environmental Science'];
+        return [
+          'Chemical Reactions',
+          'Human Body',
+          'Light and Sound',
+          'Electricity',
+        ];
 
       case 'Physics':
         return [
           'Mechanics',
           'Thermodynamics',
+          'Electromagnetism',
           'Optics',
-          'Electricity',
-          'Magnetism',
           'Modern Physics',
         ];
 
@@ -151,8 +142,8 @@ class QuizViewModel extends GetxController {
         return [
           'Atomic Structure',
           'Chemical Bonding',
+          'Thermodynamics',
           'Organic Chemistry',
-          'Inorganic Chemistry',
           'Physical Chemistry',
         ];
 
@@ -160,9 +151,8 @@ class QuizViewModel extends GetxController {
         return [
           'Cell Biology',
           'Genetics',
-          'Evolution',
-          'Ecology',
           'Human Physiology',
+          'Ecology',
           'Plant Biology',
         ];
 
@@ -172,60 +162,54 @@ class QuizViewModel extends GetxController {
           'Data Structures',
           'Algorithms',
           'Database Management',
-          'Computer Networks',
-          'Software Engineering',
         ];
 
       case 'English':
-        return [
-          'Grammar',
-          'Literature',
-          'Comprehension',
-          'Writing Skills',
-          'Poetry',
-          'Prose',
-        ];
+        return ['Grammar', 'Literature', 'Comprehension', 'Writing Skills'];
 
       case 'Social Studies':
         return ['History', 'Geography', 'Civics', 'Economics'];
 
-      case 'Hindi':
-        return ['व्याकरण', 'साहित्य', 'गद्य', 'पद्य', 'लेखन कौशल'];
+      case 'Economics':
+        return ['Microeconomics', 'Macroeconomics', 'Indian Economy'];
+
+      case 'History':
+        return [
+          'Ancient History',
+          'Medieval History',
+          'Modern History',
+          'World History',
+        ];
 
       default:
-        return ['Topic 1', 'Topic 2', 'Topic 3', 'Topic 4'];
+        return ['General Topic 1', 'General Topic 2', 'General Topic 3'];
     }
   }
 
   List<String> get subtopics {
     if (selectedTopic.value.isEmpty) return [];
 
-    // Return subtopics based on selected topic
     switch (selectedTopic.value) {
+      case 'Calculus':
+        return [
+          'Limits and Continuity',
+          'Derivatives',
+          'Integration',
+          'Differential Equations',
+        ];
+
       case 'Algebra':
         return [
           'Linear Equations',
-          'Quadratic Equations',
-          'Polynomials',
-          'Matrices',
-          'Determinants',
-        ];
-
-      case 'Calculus':
-        return [
-          'Limits',
-          'Derivatives',
-          'Integration',
-          'Applications of Derivatives',
-          'Differential Equations',
+          'Matrices and Determinants',
+          'Vector Algebra',
         ];
 
       case 'Programming':
         return [
-          'Variables & Data Types',
+          'Variables and Data Types',
           'Control Structures',
           'Functions',
-          'Arrays',
           'Object-Oriented Programming',
         ];
 
@@ -241,49 +225,44 @@ class QuizViewModel extends GetxController {
 
       case 'Mechanics':
         return [
-          'Motion in One Dimension',
-          'Motion in Two Dimensions',
           'Laws of Motion',
-          'Work and Energy',
+          'Work, Energy, and Power',
+          'Gravitation',
           'Rotational Motion',
         ];
 
       case 'Atomic Structure':
-        return [
-          'Bohr Model',
-          'Quantum Numbers',
-          'Electronic Configuration',
-          'Periodic Properties',
-        ];
+        return ['Bohr Model', 'Quantum Mechanical Model', 'Periodic Trends'];
 
       case 'Cell Biology':
         return [
-          'Cell Structure',
+          'Cell Structure and Organelles',
           'Cell Division',
-          'Cell Metabolism',
-          'Cell Transport',
+          'Photosynthesis',
+          'Cellular Respiration',
         ];
 
-      case 'Grammar':
+      case 'Human Physiology':
         return [
-          'Parts of Speech',
-          'Tenses',
-          'Voice',
-          'Narration',
-          'Sentence Structure',
+          'Digestive System',
+          'Circulatory System',
+          'Nervous System',
+          'Endocrine System',
         ];
 
-      case 'History':
+      case 'Thermodynamics':
         return [
-          'Ancient History',
-          'Medieval History',
-          'Modern History',
-          'World Wars',
-          'Independence Movement',
+          'Laws of Thermodynamics',
+          'Heat and Temperature',
+          'Thermodynamic Processes',
         ];
 
       default:
-        return ['Subtopic 1', 'Subtopic 2', 'Subtopic 3', 'Subtopic 4'];
+        return [
+          'General Subtopic 1',
+          'General Subtopic 2',
+          'General Subtopic 3',
+        ];
     }
   }
 
