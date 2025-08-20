@@ -578,7 +578,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           child: DropdownButtonFormField<String>(
-            value: safeValue, // ✅ prevents crash
+            initialValue: safeValue, // ✅ prevents crash
             decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(color: Colors.grey[400]),

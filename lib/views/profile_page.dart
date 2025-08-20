@@ -149,7 +149,7 @@ class ProfilePage extends StatelessWidget {
                         value: quizVM.autoNavigateToHome.value,
                         onChanged: (value) =>
                             quizVM.setAutoNavigateToHome(value),
-                        activeColor: const Color(0xFF667eea),
+                        activeThumbColor: const Color(0xFF667eea),
                       ),
                     ),
                   ],
@@ -367,7 +367,7 @@ class ProfilePage extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: const Color(0xFF667eea),
+            activeThumbColor: const Color(0xFF667eea),
           ),
         ],
       ),
