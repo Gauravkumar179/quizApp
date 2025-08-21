@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizapp/views/live_quiz_page.dart';
 import '../viewmodels/quiz_viewmodel.dart';
+import 'live_quiz_slider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 8),
 
           // Header Section
-          const LiveQuizSlider(),
+          LiveQuizSlider(),
 
           const SizedBox(height: 10),
 
@@ -175,7 +175,7 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Custom Quiz Configuration',
+                  'Practice Quiz',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -551,61 +551,75 @@ class HomePage extends StatelessWidget {
     required Function(String?)? onChanged,
     required String hint,
   }) {
-    // Ensure unique items
     final uniqueItems = items.toSet().toList();
-
-    // Ensure selected value exists in list, otherwise set null
     final safeValue = uniqueItems.contains(value) ? value : null;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF2D3748),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[50],
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: onChanged != null ? Colors.grey[300]! : Colors.grey[200]!,
-            ),
-          ),
-          child: DropdownButtonFormField<String>(
-            initialValue: safeValue, // ✅ prevents crash
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: TextStyle(color: Colors.grey[400]),
-              prefixIcon: Icon(icon, color: const Color(0xFF667eea)),
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 16,
-              ),
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
             style: const TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: Color(0xFF2D3748),
             ),
-            dropdownColor: Colors.white,
-            items: uniqueItems.map((String item) {
-              return DropdownMenuItem<String>(value: item, child: Text(item));
-            }).toList(),
-            onChanged: onChanged,
-            icon: const Icon(
-              Icons.keyboard_arrow_down,
-              color: Color(0xFF667eea),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            decoration: BoxDecoration(
+              color: onChanged != null ? Colors.white : Colors.grey[50],
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: onChanged != null
+                    ? Colors.grey[300]!
+                    : Colors.grey[200]!,
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: DropdownButtonFormField<String>(
+              initialValue: safeValue,
+              isExpanded: true,
+              decoration: InputDecoration(
+                hintText: hint,
+                hintStyle: TextStyle(color: Colors.grey[400]),
+                prefixIcon: Icon(icon, color: const Color(0xFF667eea)),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
+              ),
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF2D3748),
+              ),
+              dropdownColor: Colors.white,
+              items: uniqueItems.map((String item) {
+                return DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(item, overflow: TextOverflow.ellipsis),
+                );
+              }).toList(),
+              onChanged: onChanged,
+              icon: const Icon(
+                Icons.keyboard_arrow_down,
+                color: Color(0xFF667eea),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
