@@ -279,7 +279,7 @@ class StatsPage extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: _buildAchievementCard(
-                                    "Quiz Master",
+                                    "Quizlyfe",
                                     "Complete 10 quizzes",
                                     Icons.emoji_events,
                                     Colors.orange,

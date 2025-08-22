@@ -1,41 +1,49 @@
 {
   "project_info": {
-    "project_number": "913028209121",
-    "project_id": "quizapp-272d1",
-    "storage_bucket": "quizapp-272d1.firebasestorage.app"
+    "project_number": "1041071096741",
+    "project_id": "quizlyfe-8af3d",
+    "storage_bucket": "quizlyfe-8af3d.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:913028209121:android:54a6842f00d766b8a01aa0",
+        "mobilesdk_app_id": "1:1041071096741:android:0f478758ba06219ebb1e4c",
         "android_client_info": {
-          "package_name": "com.example.quizapp"
+          "package_name": "com.quizlyfe"
         }
       },
       "oauth_client": [
         {
-          "client_id": "913028209121-c0u234i69iqqsbm2mml6dmg6o1g9dhuj.apps.googleusercontent.com",
+          "client_id": "1041071096741-0j7brabg9aekpj219mb9eqaigeoldb66.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.quizapp",
+            "package_name": "com.quizlyfe",
+            "certificate_hash": "2b78c91d42865fdb17ee363c5490e71eb29d33b4"
+          }
+        },
+        {
+          "client_id": "1041071096741-a18mrn5tvm9n9khhvtnh6c5ra8v4c55v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quizlyfe",
             "certificate_hash": "e5e5b8ada17339b17abb9effe3aadf6592b39c50"
           }
         },
         {
-          "client_id": "913028209121-20s5uqctfdov7p880ttnr4qogoj977j4.apps.googleusercontent.com",
+          "client_id": "1041071096741-us24kbdeoierk5blu1k1o8gbheer5rfa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDxnJQ9U95TQaV_9cotjGZ2_HgvpgqejgM"
+          "current_key": "AIzaSyDx-asaca2026MCJlv-luxrQ__ktZKnUGY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "913028209121-20s5uqctfdov7p880ttnr4qogoj977j4.apps.googleusercontent.com",
+              "client_id": "1041071096741-us24kbdeoierk5blu1k1o8gbheer5rfa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

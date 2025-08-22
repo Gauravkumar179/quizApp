@@ -218,7 +218,7 @@ class _LoginScreenState extends State<LoginScreen>
 
         // App Title
         const Text(
-          'QuizMaster',
+          'Quizlyfe',
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,

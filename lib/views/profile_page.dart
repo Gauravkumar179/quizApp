@@ -14,9 +14,9 @@ class ProfilePage extends StatelessWidget {
     // Get the instances of the view models and services.
     final quizVM = Get.find<QuizViewModel>();
     final themeService = Get.find<ThemeService>();
-    final _firestore = FirebaseFirestore.instance;
-    final _auth = FirebaseAuth.instance;
-    final profilePhoto = _auth.currentUser?.photoURL;
+    final firestore = FirebaseFirestore.instance;
+    final auth = FirebaseAuth.instance;
+    final profilePhoto = auth.currentUser?.photoURL;
 
     return Scaffold(
       body: Container(
@@ -63,7 +63,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      _auth.currentUser?.displayName ?? 'Guest User',
+                      auth.currentUser?.displayName ?? 'Guest User',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      _auth.currentUser?.email ?? 'No email available',
+                      auth.currentUser?.email ?? 'No email available',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white.withOpacity(0.8),

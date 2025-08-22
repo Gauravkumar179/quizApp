@@ -174,7 +174,7 @@ class _SplashScreenState extends State<SplashScreen>
                               child: Column(
                                 children: [
                                   Text(
-                                    'QuizMaster',
+                                    'Quizlyfe',
                                     style: TextStyle(
                                       fontSize: 32,
                                       fontWeight: FontWeight.bold,
@@ -191,7 +191,7 @@ class _SplashScreenState extends State<SplashScreen>
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    'Test Your Knowledge',
+                                    'Play smart, live rewarded',
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white.withOpacity(0.9),

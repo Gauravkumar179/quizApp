@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/live_quiz_model.dart';
-import '../services/live_quiz_service.dart';
 import 'live_quiz_leaderboard_page.dart.dart';
 
 class LiveQuizResultPage extends StatelessWidget {
@@ -288,8 +287,9 @@ class LiveQuizResultPage extends StatelessWidget {
   }
 
   String _getScoreMessage(int percentage) {
-    if (percentage >= 90)
+    if (percentage >= 90) {
       return "Outstanding performance! You're a quiz champion!";
+    }
     if (percentage >= 80) return "Excellent work! Great job on the live quiz!";
     if (percentage >= 70) return "Good performance! Keep up the great work!";
     if (percentage >= 60) return "Nice try! Practice more to improve!";
